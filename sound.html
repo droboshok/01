@@ -16,7 +16,7 @@
 var url = 'tracks.json';
     $.getJSON(url, function(tracks) {
       $(tracks).each(function(track) {
-        $('body').html("<ul><li>"+track.title+"</li></ul>");
+        $('body').html("<ul><li>"+this.track.title+"</li></ul>");
         console.log(track.kind);
       });
 });
