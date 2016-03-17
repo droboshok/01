@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    </head>
+    <body>
+        
+<script>
+// var url = 'https://api.soundcloud.com/tracks?client_id=e18f93a6aaaf77192fa6f6180f294feb';
+var url = 'tracks.json';
+    $.getJSON(url, function(tracks) {
+      $(tracks).each(function(track) {
+        $('body').html("<ul><li>"+track.title+"</li></ul>");
+        console.log(track.kind);
+      });
+});
+
+</script>
+    </body>
+</html> 
