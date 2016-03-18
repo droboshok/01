@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html class="no-js" lang="ru">
     <head>
@@ -7,20 +9,78 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-
-    </head>
-    <body>
-        
-<script>
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+<script>jQuery(document).ready(function($) {
+  
 // var url = 'https://api.soundcloud.com/tracks?client_id=e18f93a6aaaf77192fa6f6180f294feb';
-var url = 'tracks.json';
-    $.getJSON(url, function(tracks) {
-      $(tracks).each(function(track) {
-        $('body').html("<ul><li>"+this.track.title+"</li></ul>");
-        console.log(track.kind);
-      });
+// var url = 'tracks.json';
+//     $.getJSON(url, function(tracks) {
+//       $(tracks).each(function(i,el) {
+//         $('#soundcloud ul').append("<li>"+ tracks[i].title +"</li>");
+//         console.log(tracks[i].title);
+//       });
+// });
+
+
+// SC.initialize({
+//   client_id: 'e18f93a6aaaf77192fa6f6180f294feb'
+// });
+
+// // stream track id 293
+// SC.stream('/tracks/252339510').then(function(player){
+//   player.play();
+// });
+
+// var url = "https://api.soundcloud.com/tracks/252339510/stream?client_id=e18f93a6aaaf77192fa6f6180f294feb";
+// // var url = "https://api.sndcdn.com/i1/tracks/252339510/streams?client_id=e18f93a6aaaf77192fa6f6180f294feb";
+// // var url = 'tracks.json';
+//     $.getJSON(url, function(tracks) {
+//       // $(tracks).each(function(trask) {
+//         // $('#soundcloud ul').append("<li>"+ tracks[i] +"</li>");
+//         console.log($(this));
+//       // });
+// http://api.soundcloud.com/resolve.json?url=https://api.soundcloud.com/tracks/252205505/downloadclient_id=e18f93a6aaaf77192fa6f6180f294feb
+// });
+var MY_ID = 'e18f93a6aaaf77192fa6f6180f294feb';
+
+var curl = 'https://soundcloud.com/totemtraxx/episode-17-totem-podcast-with-claudio-gasparini?in=totemtraxx/sets/dj-mix-show-totem-podcasts';
+// var curl = 'https://soundcloud.com/insidetherift/session-11-provoke-rain';
+
+// var links ;
+var asdf = $.ajax({
+  url: 'http://api.soundcloud.com/resolve.json?url='+curl+'&client_id='+MY_ID,
+  type: 'GET',
+  dataType: 'json',
+  success: function (data){
+// id_sound = data.id;
+  var id_track = data.id;
+  var id_title = data.title;
+  var id_permalink = data.permalink;
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "http://api.soundcloud.com/tracks/"+id_track+"/streams?client_id=e18f93a6aaaf77192fa6f6180f294feb",
+        
+        success: function(data){
+            $('#soundcloud ul').append('<li><a href="'+data.http_mp3_128_url+'" download="'+id_permalink+'.mp3">'+id_title+'</a></li>');
+            
+        
+          console.log(data.http_mp3_128_url);
+          }
+    });
+
+  }
 });
 
+
+
+});
 </script>
+    </head>
+    <body>
+        <div id="soundcloud">
+          <ul></ul>
+        </div>
+
     </body>
 </html> 
