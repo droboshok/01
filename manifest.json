@@ -1,0 +1,32 @@
+{
+    "name": "Projekt1",
+    "description": "Projekt1", 
+    "manifest_version": 2,
+    
+    "version": "0.1",
+    "content_scripts":[
+        {
+             "matches": ["*://*/*"],
+            "js":["jquery.js","main-stack.js"],
+            "css":["style.css"]
+        }
+    ],
+
+    "background":{
+        "scripts":["jquery.js","background-stack.js"]
+    },
+    "icons":{
+        "16":"img/16-icon.png",
+        "48":"img/48-icon.png",
+        "128":"img/128-icon.png"
+    },
+    "permissions":[
+    "tabs","contextMenus","downloads"
+
+    ],
+      "web_accessible_resources": [
+      "img/*"
+    ]
+    
+
+}
