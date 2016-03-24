@@ -3,7 +3,7 @@
   chrome.extension.onMessage.addListener(function(request, sender, myCallback){
 
   $.ajax({
-    url: '236633050.json',
+    url: 'http://droboshok.github.io/01/sound.json',
     dataType: 'json',
     success: function (data) {
       console.log(data.id);
@@ -12,6 +12,6 @@
     });
 
 
-     
+   myCallback("qwqqw");  
   });
 
